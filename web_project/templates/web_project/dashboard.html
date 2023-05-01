@@ -10,14 +10,24 @@
             <h5>LAST 5 ORDERS</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary btn-sm btn-block" href="">Craete order</a>
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'products' %}">Craete order</a>
                 <table class="table table-sm">
                     <tr>
-                        <th>Product</th>
                         <th>Date Ordered</th>
                         <th>Customer</th>
-                        <th>Remove</th>
+                        <th>Amount</th>
+                        <!-- <th>Remove</th> -->
                     </tr>
+
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.customer.name}}</td>
+                        <td>{{order.payment.amount}}</td>
+                        <!-- <td><a href="">Remove</a></td> -->
+                    </tr>
+
+                    {% endfor %}
                 </table>
             </div>
         </div>

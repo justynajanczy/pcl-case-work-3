@@ -8,16 +8,69 @@
     <div class="col-md">
         <div class="card card-body">
             <h5>Products</h5>
+            <a class="btn btn-sm btn-info" href="{% url 'create_order' %}">Order</a>
         </div>
         <div class="card card-body">
+            <h6>Drinks</h6>
             <table name="table">
                 <tr>
                     <th>Product</th>
                     <th>Category</th>
+                    <th>Size</th>
                     <th>Price</th>
                 </tr>
+
+                {% for i in drinks %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.size}}</td>
+                    <td>{{i.price}}</td>
+                </tr>
+                {% endfor %}
             </table>
+
         </div>
+
+        <!-- <div class="card card-body">
+
+            <h6>Food</h6>
+            <table name="table">
+                <tr>
+                    <th class="col-md-3">Product</th>
+                    <th class="col-md-3">Category</th>
+                    <th class="col-md-3">Price</th>
+                </tr>
+
+                {% for i in food %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.price}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+        <div class="card card-body">
+
+            <h6>Fruits</h6>
+            <table name="table">
+                <tr>
+                    <th class="col-md-3">Product</th>
+                    <th class="col-md-3">Category</th>
+                    <th class="col-md-3">Price</th>
+                </tr>
+
+                {% for i in fruits %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.price}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div> -->
     </div>
 </div>
 {% endblock %}

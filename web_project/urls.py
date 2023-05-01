@@ -20,8 +20,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
-    path('products/', views.product),
-    path('customers/', views.customer)
+    path('', views.home, name="home"),
+    path('products/', views.product, name="products"),
+    path('customers/', views.customer, name="customers"),
+    path('create_order/', views.createOrder, name="create_order")
 
 ]

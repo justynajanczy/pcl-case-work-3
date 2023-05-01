@@ -34,16 +34,21 @@ class FruitType(Enum):
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.CharField(max_length=200, null=True)
+    # type = models.CharField(max_length=200, null=True, default='')
+    # size = models.CharField(max_length=200, null=True, default='')
 
     def __str__(self):
         return self.name
     
 class Drink(Product):
     DRINKTYPE = (
-        ('Orange Juice', 'Orange Juice'),
-        ('Apple Juice', 'Apple Juice'),
-        ('Grapefruit Juice', 'Grapefruit Juice'),
-        ('Black tea', 'Black tea')
+        # ('Orange Juice', 'Orange Juice'),
+        # ('Apple Juice', 'Apple Juice'),
+        # ('Grapefruit Juice', 'Grapefruit Juice'),
+        # ('Black tea', 'Black tea')
+        ('Coffee', 'Coffee'),
+        ('Tea', 'Tea'),
+        ('Juice', 'Juice')
     )
 #    O = "ORANGE JUICE"
 #    A = "APPLE JUICE"
@@ -61,11 +66,15 @@ class Drink(Product):
         choices=DRINKTYPE,
         null=True
     )
+
     size = models.CharField(
         max_length=200,
         choices=[(tag.name, tag.value) for tag in DrinkSize],
         null=True
     )    
+
+    def __str__(self):
+        return self.name + ' ' + self.size
 
 class Food(Product):
     type = models.CharField(
@@ -73,22 +82,30 @@ class Food(Product):
         choices=[(tag.name, tag.value) for tag in FoodType],
         null=True
     )
+    # test = models.CharField(max_length=200, null=True)
 
 class Fruit(Product):
-    type = models.CharField(
-        max_length=200,
-        choices=[(tag.name, tag.value) for tag in FruitType],
-        null=True
-    )
+    # test = models.CharField(max_length=200, null=True)
+
+    type = models.CharField(max_length=200, null=True, default='Fruit')
 
 class Payment(models.Model):
+    name = models.CharField(max_length=200, null=True)
     amount = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return self.name
+
+
 
 class CreditCard(Payment):
    bankAccount = models.CharField(max_length=200, null=True)
+#    def __str__(self):
+#         return "Credit card " + self.bankAccount
 
 class MobilePay(Payment):
    phoneNumber = models.CharField(max_length=200, null=True)
+#    def __str__(self):
+#         return "Mobile pay " + self.phoneNumber
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL) 
